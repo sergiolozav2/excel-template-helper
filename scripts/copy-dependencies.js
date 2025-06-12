@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 const srcPath = path.join(__dirname, "..", "src", "python", "filler.py");
 const destDir = path.join(__dirname, "..", "dist", "python");
 
-export function copyDependencies() {
+export function copyPythonFiles() {
   if (!fs.existsSync(destDir)) {
     fs.mkdirSync(destDir, { recursive: true });
   }
