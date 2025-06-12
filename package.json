@@ -15,7 +15,11 @@
     "postinstall": "node install.js",
     "prepare": "npm run build"
   },
-  "keywords": [],
+  "keywords": ["excel", "typescript", "node"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sergiolozav2/excel-template-helper"
+  },
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.6.1",
