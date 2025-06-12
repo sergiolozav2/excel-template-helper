@@ -1,25 +1,13 @@
 import { spawn } from "child_process";
-import path from "path";
-import { fileURLToPath } from "url";
+import { getPythonPath } from "./get-python-path.js";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const pythonFillerPath = path.resolve(
-  path.join(__dirname, "python"),
-  "filler.py"
-);
-
-let pythonExecutable = path.join(__dirname, ".venv", "bin", "python3");
-if (process.platform === "win32") {
-  pythonExecutable = path.join(__dirname, ".venv", "Scripts", "python.exe");
-}
 
 export function excelTemplateFiller(
   params: GenerateExcelReportParams
 ): Promise<Buffer> {
+  const { pythonExecutable, pythonFillerScriptPath } = getPythonPath();
   return new Promise((resolve, reject) => {
-    const pythonProcess = spawn(pythonExecutable, [pythonFillerPath]);
+    const pythonProcess = spawn(pythonExecutable, [pythonFillerScriptPath]);
 
     const stdoutChunks: Uint8Array[] = [];
     const stderrChunks: Uint8Array[] = [];
@@ -60,4 +48,5 @@ type GenerateExcelReportParams = {
   start_col: number;
   template_path: string;
   sheet: string;
+  table_name?: string;
 };
