@@ -2,16 +2,22 @@ import { spawn } from "child_process";
 import path from "path";
 import { fileURLToPath } from "url";
 
-const __filename = fileURLToPath(import.meta.url); 
-const pythonScriptPath = path.join(path.dirname(__filename), "python");
-const pythonFillerPath = path.resolve(pythonScriptPath, "filler.py");
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const pythonFillerPath = path.resolve(
+  path.join(__dirname, "python"),
+  "filler.py"
+);
 
 let pythonExecutable = path.join(__dirname, ".venv", "bin", "python3");
 if (process.platform === "win32") {
   pythonExecutable = path.join(__dirname, ".venv", "Scripts", "python.exe");
 }
 
-export function excelTemplateFiller(params: GenerateExcelReportParams): Promise<Buffer> {
+export function excelTemplateFiller(
+  params: GenerateExcelReportParams
+): Promise<Buffer> {
   return new Promise((resolve, reject) => {
     const pythonProcess = spawn(pythonExecutable, [pythonFillerPath]);
 
@@ -29,7 +35,9 @@ export function excelTemplateFiller(params: GenerateExcelReportParams): Promise<
     pythonProcess.on("close", (code) => {
       if (code !== 0) {
         const errorOutput = Buffer.concat(stderrChunks).toString();
-        reject(new Error(`Python script exited with code ${code}: ${errorOutput}`));
+        reject(
+          new Error(`Python script exited with code ${code}: ${errorOutput}`)
+        );
         return;
       }
 
