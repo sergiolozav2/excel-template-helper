@@ -1,6 +1,6 @@
 {
   "name": "excel-template-helper",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -12,7 +12,8 @@
     "prebuild": "node ./scripts/delete-old-build.js",
     "build": "tsup",
     "postbuild": "node build.js",
-    "postinstall": "node install.js"
+    "postinstall": "node install.js",
+    "publish": "npm build && npm publish"
   },
   "keywords": [],
   "author": "",
