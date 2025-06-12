@@ -1,0 +1,26 @@
+{
+  "name": "excel-template-helper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepack": "tsc",
+    "build": "tsup",
+    "start": "node dist/index.js",
+    "postinstall": "node ./scripts/setup-python-env.js",
+    "postbuild": "node ./scripts/copy-dependencies.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.6.1",
+  "devDependencies": {
+    "@types/node": "^24.0.1",
+    "tsup": "^8.5.0",
+    "tsx": "^4.20.1",
+    "typescript": "^5.8.3"
+  }
+}
