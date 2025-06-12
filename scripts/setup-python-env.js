@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 
-const __filename = fileURLToPath(import.meta.url); 
+const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const VENV_DIR = path.join(__dirname, "..", "dist", ".venv");
@@ -22,7 +22,7 @@ function findPythonCommand() {
   }
 }
 
-function main() {
+export function setupPythonEnv() {
   console.log("Setting up Python environment for my-npm-library...");
 
   const pythonCmd = findPythonCommand();
@@ -69,5 +69,3 @@ function main() {
 
   console.log("✅ Python setup complete!");
 }
-
-main();
